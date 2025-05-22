@@ -9,6 +9,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Prompt is required" });
   }
 
+  // DEBUG: Mostra a chave lida da variável
+  console.log("CHAVE LIDA:", process.env.FREEPIK_API_KEY?.slice(0, 10) + "...");
+
   try {
     const response = await fetch("https://api.freepik.com/v1/ai/text-to-image/flux-dev", {
       method: "POST",
@@ -24,6 +27,7 @@ export default async function handler(req, res) {
         quality: "standard"
       })
     });
+
 
     const data = await response.json();
 
